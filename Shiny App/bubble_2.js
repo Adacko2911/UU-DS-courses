@@ -7,12 +7,12 @@
 
 
 svg.attr("font-family", "Arial Black")
-  .attr("font-size", "18")
+  .attr("font-size", "25")
   .attr("text-anchor", "middle");
     
-var svgSize = 800;
+var svgSize = 1100;
 var pack = d3.pack()
-  .size([svgSize+200, svgSize])
+  .size([svgSize+400, svgSize])
   .padding(30);
     
 var format = d3.format(",d");
@@ -21,7 +21,7 @@ var group = svg.append("g");
 
 // Resize
 r2d3.onResize(function(width, height) {
-  var minSize = Math.min(width, height);
+  var minSize = Math.min(width, height)*1.002;
   var scale = minSize / svgSize;
   
   group.attr("transform", function(d) {
@@ -48,13 +48,13 @@ r2d3.onRender(function(data, svg, width, height, options) {
         d.id = id;
       }
     });
-  var dacol = ["Strong theoretical base of data science practice and ethics",	"Causal inference",	"Data Collection methods",	"Database Management",	"nonSQL databases",	"Relational databases",	"Data Imputation"	,"Supervised Machine Learning","Data wrangling",	"Deep learning",	"Network science",	"Unsupervised Machine Learning",	"Programming", 	"SQL",	"Python", 	"Data clean-up",	"QGIS",	"PCRaster",	"R	Rmardown",	"Epidemiology",	"Bayesian statistics",	"Statistical models",	"Stochastic Modeling",	"Explorative Data Analysis",	"Specific Data Analysis",	"Simulation models",	"PAC",	"Data mining",	"Big data",	"Visualizations",	"Graph Analysis/Graph construction",	"Data manipulation",	"SPSS",	"Complex systems",	"MAL",	"HLM",	"Text mining",	"Study design",	"Stata",	"JASP",	"Haskell",	"Mplus","Visual Studio"]
+  var dacol = ["No data","Strong theoretical base of data science practice and ethics",	"Causal inference",	"Data Collection methods",	"Database Management",	"nonSQL databases",	"Relational databases",	"Data Imputation"	,"Supervised Machine Learning","Data wrangling",	"Deep learning",	"Network science",	"Unsupervised Machine Learning",	"Programming", 	"SQL",	"Python", 	"Data clean-up",	"QGIS",	"PCRaster",	"R"	,"Rmardown",	"Epidemiology",	"Bayesian statistics",	"Statistical models",	"Stochastic Modeling",	"Explorative Data Analysis",	"Specific Data Analysis",	"Simulation models",	"PAC",	"Data mining",	"Big data",	"Visualizations",	"Graph Analysis/Graph construction",	"Data manipulation",	"SPSS",	"Complex systems",	"MAL",	"HLM",	"Text mining",	"Study design",	"Stata",	"JASP",	"Haskell",	"Mplus","Visual Studio"]
   var myColor = d3.scaleOrdinal().domain(dacol)
-  .range(["#317eb4","#3859ad","#6f996c","#a0b587","#6d577a","#ccb793","#dcceb6","#ece5d8","#aca0b0","#c4bcc7",
+  .range(["#FFFFFF","#faedcd","#3859ad","#6f996c","#a0b587","#6d577a","#ccb793","#dcceb6","#ece5d8","#aca0b0","#c4bcc7",
 "#ddd8de","#b4d3f6","#f258ea","#f687f0","#fab6f6","#A8D1E7","#B3DBD8","#FEE5E0","#FFBFC5","#F6BD60",
 "#F7EDE2","#F7EDE2","#F5CAC3","#84A59D","#F28482","#82A3AC",'#A9C7C5',"#BFD8D2","#E2CFC9","#D1ACA5",
 "#D2D0F5","#D7C6D8","#F2E7F8","#C0B6FF","#FAF7FB","#EEE8E4","#F3DDD4","#F1C6B8","#E1A292","#ECF8F8",
-"#EEE4E1","#E7D8C9","#E6BEAE"])
+"#EEE4E1","#E7D8C9","#E6BEAE","#B9B0CF"])
  //var color = d3.scaleOrdinal(d3.schemeCategory20c)
 
   
