@@ -29,6 +29,7 @@ library(devtools)
 library(ggthemes)
 library(shinyWidgets)
 library(rsconnect)
+library(RColorBrewer)
 ```
 
 
@@ -52,8 +53,9 @@ shinyApp(
                   tabPanel("Topics overview",
                            sidebarLayout(
                              column(width = 4,
-                                  wellPanel(
-                                      h6("The dashboard is an interactive tool for exploring Utrecht University's data science courses.")
+                                  wellPanel(style = "background: #e8f0ff",
+                                      h5("The dashboard is an interactive tool for exploring Utrecht University's data science courses."),
+                                      
                                       ),
                              wellPanel(
                                shinyjs::useShinyjs(),
@@ -99,7 +101,10 @@ shinyApp(
                   tabPanel("Facet overview",
                            column(width = 12,
                                   wellPanel(
-                                      h6("THere on the left you van see the university overview of the")
+                                    style = "background: #e8f0ff",
+                                      h5("Below the facet overview of the topics taught by different Faculties, on different levels of education and for different type of course."),
+                                    h6("Manual:
+                                       First, choose the desired facet condition and click 'Show facet view' button. Note that the size of the bubbles represents the number of courses where a particular topic is taught. To get a clearer output, the user may set the minimum number of courses to 2 or more to get the most popular topics within each facet.")
                                       ),
                            wellPanel(
                              selectInput("overview", "Overview:",choices = 
@@ -119,7 +124,9 @@ shinyApp(
                            sidebarLayout(
                              column(width = 4,
                                     wellPanel(
-                                      h6("THere on the left you van see the university overview of the")
+                                      style = "background: #e8f0ff",
+                                      h5("On the left, you can see the impact that each faculty has on teaching a certain data science-related topic."),
+                                      h6("Below user may chose topics of interests for more clear ouput.")
                                       ),
                                     wellPanel(
                                        selectizeInput(inputId = "topic", label = "Topics to compare:",choices = topic_choices
@@ -273,26 +280,10 @@ output$plots2 <- renderPlotly({
   }
   
   ggplotly(
-    plot1_perc %>% ggplot(aes(x=total,y=name,fill=Faculty))+geom_col()+ylab("")+xlab("percentage (%)")+theme_minimal()
+    plot1_perc %>% ggplot(aes(x=total,y=name,fill=Faculty))+geom_col() + scale_fill_brewer(palette="Set2") +ylab("")+xlab("percentage (%)")+theme_minimal()
   ) %>% layout(height = 800, width = 1200) })
 
 
 
 })
 ```
-```{r}
- shinyApp(
-    ui = fluidPage(
-      useShinyjs(),
-      textInput("text", "Please type at least 3 characters"),
-      actionButton("element", "Submit")
-    ),
-    server = function(input, output) {
-      observe({
-        toggleState(id = "element", condition = nchar(input$text) >= 3)
-      })
-    }
-  )
-
-```
-
